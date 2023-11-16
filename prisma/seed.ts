@@ -1,7 +1,4 @@
 import PrismaClientPkg from '@prisma/client'
-import { faker } from '@faker-js/faker'
-
-
 
 const PrismaClient = PrismaClientPkg.PrismaClient
 const prisma = new PrismaClient()
@@ -18,23 +15,14 @@ export function randomDate(): string {
     return difference.toISOString()
 }
 
-function getFaker() {
-    const name = faker.person.fullName()
-    return {
-        name,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
-    }
-}
 
 function getUsers() {
-    const faker1 = getFaker()
-    const faker2 = getFaker()
     return [
         {
-            name: faker1.name,
+            name: 'matia',
             handle: '@joyofcodedev',
-            email: faker.internet.email(),
-            avatar: faker1.avatar,
+            email: 'matia@example.test',
+            avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=matia`,
             about: 'Likes long walks on the beach. 😘',
             tweets: {
                 create: [
@@ -66,10 +54,10 @@ function getUsers() {
             }
         },
         {
-            name: faker2.name,
+            name: 'bob',
             handle: '@bobross',
-            email: faker.internet.email(),
-            avatar: faker2.avatar,
+            email: 'bob@example.test',
+            avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=bob`,
             about: 'Likes painting.',
             tweets: {
                 create: [
