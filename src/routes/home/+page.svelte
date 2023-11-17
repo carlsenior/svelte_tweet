@@ -1,9 +1,10 @@
 <script lang="ts">
     import type { TweetType } from '$root/lib/types/tweet_type'
     import Tweet from '$lib/tweet.svelte'
+    import Compose from '$lib/compose.svelte';
 
     export let data
-    let tweets: TweetType[] = data.tweets
+    $: tweets = data.tweets
 </script>
 
 <svelte:head>
@@ -11,6 +12,8 @@
 </svelte:head>
 
 <h1>Feed</h1>
+
+<Compose />
 
 {#each tweets as tweet}
     <Tweet {tweet} />

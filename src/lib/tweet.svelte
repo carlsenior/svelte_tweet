@@ -2,9 +2,11 @@
     import { fly, fade } from 'svelte/transition'
     import Icon from '$lib/icon.svelte'
     import type { TweetType } from '$lib/types/tweet_type'
+	import { enhance } from '$app/forms'
 
     export let tweet: TweetType
 </script>
+
 
 <article class="tweet-container" transition:fade>
     <a class="avatar" href="/home/profile/{tweet.user.name}">
@@ -25,20 +27,20 @@
             </div>
 
             <div class="actions">
-                <form action="/home/like" method="post">
+                <form action="?/like_tweet" method="post" use:enhance>
                     <input type="hidden" name="id" value="{tweet.id}" />
                     <button class="btn like" title="like" type="submit">
                         <div class="circle">
                             <Icon width="24" height="24" name="like" class="{tweet.liked.length > 0 ? 'liked' : ''}" />
                         </div>                        
                         <span class="count">
-                            {#key tweet.liked.length}
-                                {#if tweet.liked.length > 0}
-                                    <div in:fly={{ y:40 }} out:fly={{ y:40 }}>
-                                        {tweet.liked.length}
-                                    </div>
-                                {/if}
-                            {/key}
+							<!-- {#key tweet.liked.length } -->
+								{#if tweet.liked.length > 0}
+									<div in:fly={{ y:40 }} out:fly={{ y:40 }}>
+										{tweet.liked.length}
+									</div>
+								{/if}
+							<!-- {/key} -->
                         </span>
                     </button>
                 </form>
@@ -49,7 +51,7 @@
                     </div>
                 </a>
 
-                <form action="/home?_method=delete" method="post">
+                <form action="?/delete_tweet" method="post" use:enhance>
                     <input type="hidden" name="id" value={tweet.id} />
                     <button type="submit" aria-label="Remove tweet" class="btn remove" title="Remove">
                         <div class="circle">

@@ -5,7 +5,7 @@
 
 <div class="error">
 	<h1>{$page.status}: {$page.error?.message}</h1>
-	<img src="/dancing.webp" alt="Person dancing" />
+	<img src="/oops.jpg" alt="Person dancing" />
 </div>
 
 <style>
