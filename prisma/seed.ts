@@ -30,25 +30,28 @@ function getUsers() {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: 'SvelteKit is lit. 💥',
-                        likes: 10
+                        liked: {
+                            create: [
+                                {
+                                    userId: 2
+                                }
+                            ]
+                        }
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: 'I love SvelteKit! ❤',
-                        likes: 24
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: 'Sometimes when I\'m writing JavaScript I want to throw up my hands and say "this is crazy!" but I can\'t remember what "this" refers to. 🤪',
-                        likes: 8
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: 'How do you comfort a JavaScript bug? You console it. 😚',
-                        likes: 0
                     }
                 ]
             }
@@ -65,27 +68,23 @@ function getUsers() {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: `Use your imagination. Wind it up, blend it together. The joy of painting really is universal.`,
-                        likes: 1
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content: `The only thing I have control over is taking out the trash. 😂`,
-                        likes: 4
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content:
                             'Painting is as individual as people are. 👩‍🎨',
-                        likes: 0
                     },
                     {
                         url: randomUrl(),
                         posted: randomDate(),
                         content:
                             'All we do is just sorta have an idea in our mind, and we just sorta let it happen. 🌈',
-                        likes: 10
                     }
                 ]
             }

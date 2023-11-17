@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { nodes } from './../../../.svelte-kit/generated/client/app.js';
 	import Trending from '$lib/trending.svelte';
     import Navigation from '$lib/navigation.svelte'
 </script>
