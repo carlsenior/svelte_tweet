@@ -1,11 +1,9 @@
-import { PrismaClient } from '@prisma/client'
-import { error, json, redirect } from '@sveltejs/kit'
+import { createTweet, deleteTweet, likeTweet } from '$root/utils/prisma.js'
+import { error } from '@sveltejs/kit'
 
-
-const prisma = new PrismaClient()
 
 export async function load({fetch}) {
-    const res = await fetch('/api')
+    const res = await fetch('/home')
     if (res.ok) return {
         tweets: await res.json()
     }
@@ -16,33 +14,12 @@ export const actions = {
     like_tweet:async ({request}) => {
         const form = await request.formData()
         const id = Number(form.get('id'))
-        const tweet = await prisma.tweet.findFirstOrThrow({
-            where: {id: id},
-            include: {user: true, liked: true}
-        })
-        const isLiked = tweet.liked.filter(l => l.userId == 1); // mock user to first user
-        if (isLiked.length == 0) {
-            await prisma.liked.create({
-                data: {
-                    tweetId: id,
-                    userId: 1
-                }
-            })
-        } else {
-            await prisma.liked.deleteMany({
-                where: {
-                    tweetId: id,
-                    userId: 1
-                }
-            })
-        }
+        await likeTweet(id)
     },
     delete_tweet:async ({request}) => {
         const form = await request.formData()
         const tweet_id = Number(form.get('id'))
-        const res = await prisma.tweet.delete({
-            where: {id: tweet_id }
-        })
+        await deleteTweet(tweet_id)
     },
     create_tweet: async ({request}) => {
         const form = await request.formData()
@@ -52,16 +29,7 @@ export const actions = {
             throw error(400, 'Maximum Tweet length exceeded.')
         }
 
-        const new_tweet = await prisma.tweet.create({
-            data: {
-                posted: new Date(),
-                url: Math.random().toString(16).slice(2),
-                content: tweet,
-                user: {
-                    connect: {id : 1}
-                }
-            }
-        })
+        await createTweet(tweet)
     }
 }
 
