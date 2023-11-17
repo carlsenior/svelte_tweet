@@ -18,8 +18,8 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li class:active={path == '/home/profile/matia'}>
-                    <a href="/home/profile/matia">
+                <li class:active={path == '/home/profile/1'}>
+                    <a href="/home/profile/1">
                         <Icon width="32" height="32" name="profile" />
                         <span>Profile</span>
                     </a>

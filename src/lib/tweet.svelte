@@ -27,7 +27,7 @@
             </div>
 
             <div class="actions">
-                <form action="?/like_tweet" method="post" use:enhance>
+                <form action="/home?/like_tweet" method="post" use:enhance>
                     <input type="hidden" name="id" value="{tweet.id}" />
                     <button class="btn like" title="like" type="submit">
                         <div class="circle">
@@ -45,13 +45,13 @@
                     </button>
                 </form>
 
-                <a href="/home/profile/{tweet.user.id}" class="permalink" title="Permalink">
+                <a href="/home/profile/{tweet.user.id}/status/{tweet.id}" class="permalink" title="Permalink">
                     <div class="circle">
                         <Icon width="24" height="24" name="permalink" />
                     </div>
                 </a>
 
-                <form action="?/delete_tweet" method="post" use:enhance>
+                <form action="/home?/delete_tweet" method="post" use:enhance>
                     <input type="hidden" name="id" value={tweet.id} />
                     <button type="submit" aria-label="Remove tweet" class="btn remove" title="Remove">
                         <div class="circle">
