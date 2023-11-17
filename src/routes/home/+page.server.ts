@@ -18,7 +18,7 @@ export const actions = {
         const id = Number(form.get('id'))
         const tweet = await prisma.tweet.findFirstOrThrow({
             where: {id: id},
-            select: {user: true, liked: true}
+            include: {user: true, liked: true}
         })
         const isLiked = tweet.liked.filter(l => l.userId == 1); // mock user to first user
         if (isLiked.length == 0) {

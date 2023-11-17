@@ -15,9 +15,11 @@
 
 <Compose />
 
-{#each tweets as tweet}
+
+{#each tweets as tweet, i (tweet.id)}
     <Tweet {tweet} />
 {/each}
+
 
 <style>
     h1 {
